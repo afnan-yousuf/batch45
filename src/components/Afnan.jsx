@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import style from './Afnan.module.css'
 
 
 function Afnan() {
+
+  const [friends, setFriends] = useState(["Afnan","Ali","Ebad","Jamil"])
+  const [error, setError] = useState("")
+
+  function checkFriends(event){
+    setError("")
+    friends.map((i)=>{
+      if(i == event.target.value){
+        setError("Already Exist")
+      }
+    })
+  }
+
   return (
     <div>
-        <h1 className={style.myheading}>Afnan Yousuf From Component</h1>
-        <button className={style.button}>OK</button>
+        <input type='text' onBlur={checkFriends} />
+        <p>{error}</p>
     </div>
   )
 }
